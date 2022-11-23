@@ -68,19 +68,10 @@ public class Animal {
         return "Animal{" + "birth=" + birth + ", name=" + name + ", type=" + type + ", mass=" + mass + ", status=" + status + '}';
     }
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
     public void eat(double plus) {
         double mass = getMass();
         setStatus("eating");
-        setMass (mass + Math.abs(plus));
+        setMass(mass + Math.abs(plus));
     }
 
     public void sleep() {
@@ -97,24 +88,26 @@ public class Animal {
 
     public void play(int min) {
         setStatus("playing");
-        if (min>=180){
-            min=180;
+        if (min > 180) {
+            throw new IllegalArgumentException();
         }
-        int cycle=Math.floorDiv(min, 30);
+        int cycle = Math.floorDiv(min, 30);
         setMass(mass - (cycle * 20));
-        if((min-cycle*30)%1!=0){
-            setMass(mass+10);
+        if ((min - cycle * 30) % 1 != 0) {
+            setMass(mass + 10);
         }
     }
-    public Animal clone(Animal pet){
-        
+
+    public Animal clone(Animal pet) {
+        if (pet == null) {
+            System.out.println("Entroduce los datos de pet");
+        }
         LocalDate birthClone = pet.getBirth();
         String nameClone = pet.getName();
         String typeClone = pet.getType();
-        double massClone =  pet.getMass();
+        double massClone = pet.getMass();
         String statusClone = pet.getStatus();
-        
-        Animal petClone= new Animal(birthClone, nameClone, typeClone, massClone, statusClone);
+        Animal petClone = new Animal(birthClone, nameClone, typeClone, massClone, statusClone);
         return petClone;
     }
 

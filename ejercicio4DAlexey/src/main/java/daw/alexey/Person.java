@@ -1,6 +1,7 @@
 package daw.alexey;
 
 public class Person {
+
     private String name;
     private int age;
 
@@ -32,14 +33,21 @@ public class Person {
     public String toString() {
         return "Person{" + "name=" + name + ", age=" + age + '}';
     }
-    
-    public void call(Animal pet){
+
+    public void call(Animal pet) {
         pet.setStatus("awaken");
     }
-    public void giveEat(Animal pet, double plus){
+
+    public void giveEat(Animal pet, double plus) {
         pet.eat(plus);
     }
-    public void playWithPet(Animal pet, int min){
-        pet.play(min);
+
+    public void playWithPet(Animal pet, int min) {
+        try {
+            pet.play(min);
+        } catch (IllegalArgumentException e) {
+            System.out.println("No puede ser mas de 180 min");
+            pet.play(180);
+        }
     }
 }
